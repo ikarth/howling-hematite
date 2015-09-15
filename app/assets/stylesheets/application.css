@@ -15,6 +15,5 @@
  *= require main
  *= require rrssb
  *= require safety
- *= require donate
  *= require_tree .
  */
