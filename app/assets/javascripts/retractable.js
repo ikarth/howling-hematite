@@ -40,6 +40,14 @@ function unhideUrlTag(tagname) {
   }
 }
 
+function initializeUrlTag(tagname) {
+  if((window.location.href.indexOf(tagname) != -1)) {
+    unhide($(tagname));
+  } else {
+    hide($(tagname));
+  }
+}
+
 $(window).load(function() {
   $("article.retractable section h1").hover(
     function() {
@@ -47,19 +55,15 @@ $(window).load(function() {
     function() {
       $(this).parent().parent().removeClass("hovering");
     });
+  hide($(".start-hidden"));
+  initializeUrlTag("#privacy-statement");
+  initializeUrlTag("#disclaimer");
+  initializeUrlTag("#terms-of-use");
+  initializeUrlTag("#contact-us");
   $("article.retractable h1").click(function() { toggleHidden($(this).parent().parent()); });
   $("article.retractable.entire-retract").click(function() { toggleHidden($(this)); });
-  toggleHidden($("#privacy-statement"));
   $("#reveal-privacy").click(function() { toggleHidden($("#privacy-statement")); });
-  toggleHidden($("#terms-of-use"));
   $("#reveal-terms-of-use").click(function() { toggleHidden($("#terms-of-use")); });
-  toggleHidden($("#disclaimer"));
   $("#reveal-disclaimer").click(function() { toggleHidden($("#disclaimer")); });
-  toggleHidden($("#contact-us"));
   $("#reveal-contact-info").click(function() { toggleHidden($("#contact-us")); });
-  hide($(".start-hidden"));
-  unhideUrlTag("#privacy-statement");
-  unhideUrlTag("#disclaimer");
-  unhideUrlTag("#terms-of-use");
-  unhideUrlTag("#contact-us");
 });
